@@ -1,0 +1,691 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Emotionally Intelligent Mental Health Tracker Design System */
+
+@layer base {
+  :root {
+    /* Base Light Theme - Beautiful Gradients */
+    --background: 0 0% 100%;
+    --foreground: 215 25% 27%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 215 25% 27%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 215 25% 27%;
+
+    /* Mood-Adaptive Primary Colors */
+    --primary: 200 85% 60%;
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 210 20% 96%;
+    --secondary-foreground: 215 25% 27%;
+
+    --muted: 210 20% 96%;
+    --muted-foreground: 215 15% 58%;
+
+    --accent: 200 85% 97%;
+    --accent-foreground: 200 85% 35%;
+
+    --destructive: 0 65% 58%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 215 20% 92%;
+    --input: 215 20% 92%;
+    --ring: 200 85% 60%;
+
+    --radius: 1rem;
+
+    /* Mood-Specific Color Palettes */
+    
+    /* Happy/Joyful Theme */
+    --happy-primary: 45 100% 65%;
+    --happy-secondary: 35 100% 85%;
+    --happy-accent: 25 95% 75%;
+    --happy-background: 50 60% 98%;
+    --happy-gradient: linear-gradient(135deg, hsl(45 100% 85%), hsl(35 95% 90%));
+    
+    /* Calm/Peaceful Theme */
+    --calm-primary: 200 85% 60%;
+    --calm-secondary: 200 50% 85%;
+    --calm-accent: 180 60% 75%;
+    --calm-background: 200 30% 98%;
+    --calm-gradient: linear-gradient(135deg, hsl(200 70% 85%), hsl(180 60% 90%));
+    
+    /* Sad/Distressed Theme */
+    --sad-primary: 250 40% 65%;
+    --sad-secondary: 250 30% 85%;
+    --sad-accent: 270 40% 80%;
+    --sad-background: 250 20% 98%;
+    --sad-gradient: linear-gradient(135deg, hsl(250 30% 88%), hsl(270 25% 92%));
+    
+    /* Anxious/Stressed Theme */
+    --anxious-primary: 160 50% 60%;
+    --anxious-secondary: 160 40% 85%;
+    --anxious-accent: 140 45% 75%;
+    --anxious-background: 160 25% 98%;
+    --anxious-gradient: linear-gradient(135deg, hsl(160 40% 88%), hsl(140 35% 90%));
+    
+    /* Energized/Motivated Theme */
+    --energized-primary: 340 85% 65%;
+    --energized-secondary: 340 60% 85%;
+    --energized-accent: 320 75% 80%;
+    --energized-background: 340 30% 98%;
+    --energized-gradient: linear-gradient(135deg, hsl(340 70% 85%), hsl(320 65% 88%));
+
+    /* Shadows & Effects */
+    --shadow-soft: 0 4px 20px -4px hsl(var(--primary) / 0.1);
+    --shadow-mood: 0 8px 32px -8px hsl(var(--primary) / 0.15);
+    --shadow-glow: 0 0 40px hsl(var(--primary) / 0.2);
+
+    /* Transitions */
+    --transition-smooth: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-bounce: all 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+
+    --radius: 1.25rem;
+
+    --sidebar-background: 0 0% 98%;
+
+    --sidebar-foreground: 240 5.3% 26.1%;
+
+    --sidebar-primary: 240 5.9% 10%;
+
+    --sidebar-primary-foreground: 0 0% 98%;
+
+    --sidebar-accent: 240 4.8% 95.9%;
+
+    --sidebar-accent-foreground: 240 5.9% 10%;
+
+    --sidebar-border: 220 13% 91%;
+
+    --sidebar-ring: 217.2 91.2% 59.8%;
+  }
+
+  /* Mood-specific body classes */
+  .mood-happy {
+    --background: 50 60% 98%;
+    --card: 45 100% 97%;
+    --muted: 45 100% 95%;
+    --accent: 45 100% 95%;
+  }
+
+  .mood-calm {
+    --background: 200 30% 98%;
+    --card: 200 85% 97%;
+    --muted: 200 50% 95%;
+    --accent: 200 85% 95%;
+  }
+
+  .mood-sad {
+    --background: 250 20% 98%;
+    --card: 250 40% 97%;
+    --muted: 250 30% 95%;
+    --accent: 250 40% 95%;
+  }
+
+  .mood-anxious {
+    --background: 160 25% 98%;
+    --card: 160 50% 97%;
+    --muted: 160 40% 95%;
+    --accent: 160 50% 95%;
+  }
+
+  .mood-energized {
+    --background: 340 30% 98%;
+    --card: 340 85% 97%;
+    --muted: 340 60% 95%;
+    --accent: 340 85% 95%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-gradient-to-br from-blue-50 via-purple-50 to-pink-50 text-foreground transition-all duration-700;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    position: relative;
+    overflow-x: hidden;
+  }
+
+  /* Animated Background Elements */
+  body::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: 
+      radial-gradient(circle at 20% 80%, rgba(147, 51, 234, 0.08) 0%, transparent 50%),
+      radial-gradient(circle at 80% 20%, rgba(236, 72, 153, 0.08) 0%, transparent 50%),
+      radial-gradient(circle at 40% 40%, rgba(59, 130, 246, 0.08) 0%, transparent 50%);
+    pointer-events: none;
+    z-index: -1;
+    animation: background-shift 20s ease-in-out infinite;
+  }
+
+  /* Floating Particles */
+  body::after {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: 
+      radial-gradient(2px 2px at 20px 30px, rgba(147, 51, 234, 0.2), transparent),
+      radial-gradient(2px 2px at 40px 70px, rgba(236, 72, 153, 0.15), transparent),
+      radial-gradient(1px 1px at 90px 40px, rgba(59, 130, 246, 0.2), transparent),
+      radial-gradient(1px 1px at 130px 80px, rgba(16, 185, 129, 0.15), transparent),
+      radial-gradient(2px 2px at 160px 30px, rgba(245, 101, 101, 0.2), transparent);
+    background-repeat: repeat;
+    background-size: 200px 100px;
+    pointer-events: none;
+    z-index: -1;
+    animation: particle-float 15s linear infinite;
+  }
+}
+
+@layer components {
+  /* Mood-Responsive Components */
+  .mood-card {
+    @apply bg-white/80 backdrop-blur-md border border-gray-200/50 rounded-2xl shadow-lg transition-all duration-700;
+    box-shadow: 0 4px 20px -4px rgba(0, 0, 0, 0.1);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .mood-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+    transition: left 0.5s;
+  }
+
+  .mood-card:hover::before {
+    left: 100%;
+  }
+
+  .mood-card:hover {
+    box-shadow: 0 8px 30px -8px rgba(0, 0, 0, 0.15);
+    transform: translateY(-2px);
+  }
+
+  .mood-button {
+    @apply inline-flex items-center justify-center rounded-xl font-medium transition-all duration-500;
+    @apply hover:scale-105 active:scale-95;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .mood-button::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    background: radial-gradient(circle, rgba(255, 255, 255, 0.4) 0%, transparent 70%);
+    transform: translate(-50%, -50%);
+    transition: width 0.3s, height 0.3s;
+  }
+
+  .mood-button:hover::before {
+    width: 200px;
+    height: 200px;
+  }
+
+  .mood-button-happy {
+    @apply bg-gradient-to-r from-yellow-100 to-orange-100 text-orange-800 border border-orange-200;
+    @apply hover:from-yellow-200 hover:to-orange-200 hover:shadow-lg;
+    box-shadow: 0 4px 15px rgba(251, 191, 36, 0.3);
+  }
+
+  .mood-button-calm {
+    @apply bg-gradient-to-r from-blue-100 to-teal-100 text-blue-800 border border-blue-200;
+    @apply hover:from-blue-200 hover:to-teal-200 hover:shadow-lg;
+    box-shadow: 0 4px 15px rgba(59, 130, 246, 0.3);
+  }
+
+  .mood-button-sad {
+    @apply bg-gradient-to-r from-purple-100 to-indigo-100 text-purple-800 border border-purple-200;
+    @apply hover:from-purple-200 hover:to-indigo-200 hover:shadow-lg;
+    box-shadow: 0 4px 15px rgba(147, 51, 234, 0.3);
+  }
+
+  .mood-button-anxious {
+    @apply bg-gradient-to-r from-green-100 to-emerald-100 text-green-800 border border-green-200;
+    @apply hover:from-green-200 hover:to-emerald-200 hover:shadow-lg;
+    box-shadow: 0 4px 15px rgba(34, 197, 94, 0.3);
+  }
+
+  .mood-button-energized {
+    @apply bg-gradient-to-r from-pink-100 to-rose-100 text-pink-800 border border-pink-200;
+    @apply hover:from-pink-200 hover:to-rose-200 hover:shadow-lg;
+    box-shadow: 0 4px 15px rgba(236, 72, 153, 0.3);
+  }
+
+  /* Mood indicators for weekly view */
+  .mood-indicator-happy {
+    background: linear-gradient(135deg, #fbbf24, #f59e0b);
+    box-shadow: 0 2px 8px rgba(251, 191, 36, 0.3);
+    animation: pulse-glow 2s ease-in-out infinite;
+  }
+
+  .mood-indicator-calm {
+    background: linear-gradient(135deg, #60a5fa, #3b82f6);
+    box-shadow: 0 2px 8px rgba(96, 165, 250, 0.3);
+    animation: pulse-glow 2s ease-in-out infinite 0.4s;
+  }
+
+  .mood-indicator-sad {
+    background: linear-gradient(135deg, #a78bfa, #8b5cf6);
+    box-shadow: 0 2px 8px rgba(167, 139, 250, 0.3);
+    animation: pulse-glow 2s ease-in-out infinite 0.8s;
+  }
+
+  .mood-indicator-anxious {
+    background: linear-gradient(135deg, #34d399, #10b981);
+    box-shadow: 0 2px 8px rgba(52, 211, 153, 0.3);
+    animation: pulse-glow 2s ease-in-out infinite 1.2s;
+  }
+
+  .mood-indicator-energized {
+    background: linear-gradient(135deg, #fb7185, #f43f5e);
+    box-shadow: 0 2px 8px rgba(251, 113, 133, 0.3);
+    animation: pulse-glow 2s ease-in-out infinite 1.6s;
+  }
+
+  .gentle-glow {
+    box-shadow: 0 0 30px -10px hsl(var(--primary) / 0.3);
+    animation: glow-pulse 2s ease-in-out infinite;
+  }
+
+  .floating-animation {
+    animation: float 6s ease-in-out infinite;
+  }
+
+  .pulse-gentle {
+    animation: pulse-gentle 4s ease-in-out infinite;
+  }
+
+  /* Enhanced interactive elements */
+  .interactive-scale {
+    @apply transition-all duration-300;
+    position: relative;
+  }
+
+  .interactive-scale:hover {
+    @apply scale-105;
+  }
+
+  .interactive-scale:active {
+    @apply scale-95;
+  }
+
+  /* Progress bar styling */
+  .progress-bar {
+    @apply bg-muted rounded-full overflow-hidden;
+  }
+
+  .progress-fill {
+    @apply h-full rounded-full transition-all duration-1000;
+    background: linear-gradient(90deg, hsl(var(--primary)), hsl(var(--accent-foreground)));
+  }
+
+  /* Animated background cards */
+  .animated-card {
+    position: relative;
+    overflow: hidden;
+  }
+
+  .animated-card::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: conic-gradient(from 0deg, transparent, rgba(147, 51, 234, 0.05), transparent);
+    animation: rotate-slow 10s linear infinite;
+    pointer-events: none;
+  }
+
+  /* Floating elements */
+  .floating-element {
+    animation: float-gentle 8s ease-in-out infinite;
+  }
+
+  .floating-element:nth-child(2) {
+    animation-delay: -2s;
+  }
+
+  .floating-element:nth-child(3) {
+    animation-delay: -4s;
+  }
+
+  .floating-element:nth-child(4) {
+    animation-delay: -6s;
+  }
+}
+
+@layer utilities {
+  .bg-mood-gradient {
+    background: var(--calm-gradient);
+  }
+
+  .mood-happy .bg-mood-gradient {
+    background: var(--happy-gradient);
+  }
+
+  .mood-calm .bg-mood-gradient {
+    background: var(--calm-gradient);
+  }
+
+  .mood-sad .bg-mood-gradient {
+    background: var(--sad-gradient);
+  }
+
+  .mood-anxious .bg-mood-gradient {
+    background: var(--anxious-gradient);
+  }
+
+  .mood-energized .bg-mood-gradient {
+    background: var(--energized-gradient);
+  }
+
+  .text-gradient {
+    background: linear-gradient(135deg, hsl(var(--primary)), hsl(var(--accent-foreground)));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .glass-effect {
+    @apply bg-white/70 backdrop-blur-sm border border-gray-200/50;
+    box-shadow: 0 8px 32px -8px rgba(0, 0, 0, 0.1);
+  }
+
+  .hover-lift {
+    @apply transition-all duration-500 hover:scale-[1.02] hover:-translate-y-1;
+    box-shadow: 0 4px 20px -4px rgba(0, 0, 0, 0.1);
+  }
+
+  .hover-lift:hover {
+    box-shadow: 0 8px 30px -8px rgba(0, 0, 0, 0.15);
+  }
+
+  .glow-on-hover {
+    @apply transition-all duration-300 hover:shadow-2xl;
+  }
+
+  .shimmer {
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
+    background-size: 200% 100%;
+    animation: shimmer 2s infinite;
+  }
+
+  .success-pulse {
+    animation: success-pulse 0.6s ease-out;
+  }
+
+  /* Enhanced text utilities */
+  .text-balance {
+    text-wrap: balance;
+  }
+
+  /* Smooth scrolling */
+  .smooth-scroll {
+    scroll-behavior: smooth;
+  }
+
+  /* Animated backgrounds */
+  .animated-bg {
+    background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
+    background-size: 400% 400%;
+    animation: gradient-shift 15s ease infinite;
+  }
+
+  /* Floating particles */
+  .particle {
+    position: absolute;
+    width: 4px;
+    height: 4px;
+    background: rgba(147, 51, 234, 0.6);
+    border-radius: 50%;
+    pointer-events: none;
+    animation: particle-float 20s linear infinite;
+  }
+}
+
+/* Keyframe Animations */
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-10px); }
+}
+
+@keyframes float-gentle {
+  0%, 100% { transform: translateY(0px) rotate(0deg); }
+  25% { transform: translateY(-5px) rotate(1deg); }
+  50% { transform: translateY(-10px) rotate(0deg); }
+  75% { transform: translateY(-5px) rotate(-1deg); }
+}
+
+@keyframes pulse-gentle {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.8; transform: scale(1.02); }
+}
+
+@keyframes pulse-glow {
+  0%, 100% { 
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+    transform: scale(1);
+  }
+  50% { 
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.4);
+    transform: scale(1.1);
+  }
+}
+
+@keyframes glow-pulse {
+  0%, 100% { 
+    box-shadow: 0 0 30px -10px hsl(var(--primary) / 0.3);
+  }
+  50% { 
+    box-shadow: 0 0 50px -10px hsl(var(--primary) / 0.5);
+  }
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideInLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideInRight {
+  from {
+    opacity: 0;
+    transform: translateX(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes bounce-gentle {
+  0%, 20%, 53%, 80%, 100% {
+    animation-timing-function: cubic-bezier(0.215, 0.610, 0.355, 1.000);
+    transform: translate3d(0,0,0);
+  }
+  40%, 43% {
+    animation-timing-function: cubic-bezier(0.755, 0.050, 0.855, 0.060);
+    transform: translate3d(0, -8px, 0);
+  }
+  70% {
+    animation-timing-function: cubic-bezier(0.755, 0.050, 0.855, 0.060);
+    transform: translate3d(0, -4px, 0);
+  }
+  90% {
+    transform: translate3d(0,-2px,0);
+  }
+}
+
+@keyframes shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
+@keyframes success-pulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.1); box-shadow: 0 0 20px rgba(34, 197, 94, 0.4); }
+  100% { transform: scale(1); }
+}
+
+@keyframes gentle-bounce {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-5px); }
+}
+
+@keyframes rotate-gentle {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+@keyframes rotate-slow {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+@keyframes breathe {
+  0%, 100% { transform: scale(1); opacity: 1; }
+  50% { transform: scale(1.05); opacity: 0.8; }
+}
+
+@keyframes sparkle {
+  0%, 100% { opacity: 0; transform: scale(0) rotate(0deg); }
+  50% { opacity: 1; transform: scale(1) rotate(180deg); }
+}
+
+@keyframes background-shift {
+  0%, 100% { 
+    background-position: 0% 50%;
+    opacity: 0.5;
+  }
+  50% { 
+    background-position: 100% 50%;
+    opacity: 0.8;
+  }
+}
+
+@keyframes particle-float {
+  0% { transform: translateY(100vh) rotate(0deg); opacity: 0; }
+  10% { opacity: 1; }
+  90% { opacity: 1; }
+  100% { transform: translateY(-100px) rotate(360deg); opacity: 0; }
+}
+
+@keyframes gradient-shift {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+/* Animation Classes */
+.animate-fade-in-up {
+  animation: fadeInUp 0.6s ease-out;
+}
+
+.animate-slide-in-left {
+  animation: slideInLeft 0.5s ease-out;
+}
+
+.animate-slide-in-right {
+  animation: slideInRight 0.5s ease-out;
+}
+
+.animate-bounce-gentle {
+  animation: bounce-gentle 2s infinite;
+}
+
+.animate-gentle-bounce {
+  animation: gentle-bounce 2s ease-in-out infinite;
+}
+
+.animate-rotate-gentle {
+  animation: rotate-gentle 2s linear infinite;
+}
+
+.animate-shimmer {
+  animation: shimmer 2s infinite;
+}
+
+.animate-breathe {
+  animation: breathe 4s ease-in-out infinite;
+}
+
+.animate-sparkle {
+  animation: sparkle 1.5s ease-in-out infinite;
+}
+
+.animate-float-gentle {
+  animation: float-gentle 8s ease-in-out infinite;
+}
+
+.animate-pulse-glow {
+  animation: pulse-glow 2s ease-in-out infinite;
+}
+
+/* Responsive design utilities */
+@media (max-width: 768px) {
+  .mood-card {
+    @apply rounded-xl;
+  }
+  
+  .hover-lift:hover {
+    @apply transform-none;
+  }
+}
+
+/* Focus states for accessibility */
+.interactive-scale:focus-visible {
+  @apply outline-none ring-2 ring-blue-500 ring-offset-2;
+}
+
+/* Print styles */
+@media print {
+  .mood-card {
+    @apply shadow-none border border-gray-300;
+  }
+  
+  .animate-fade-in-up,
+  .animate-slide-in-left,
+  .animate-bounce-gentle {
+    animation: none;
+  }
+}
